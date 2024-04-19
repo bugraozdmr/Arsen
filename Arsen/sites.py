@@ -1,7 +1,7 @@
 
 # simple
 class sites:
-    def CreateString(self,username,url):
+    def CreateString(username,url):
         return url+username
 
 

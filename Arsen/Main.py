@@ -8,7 +8,7 @@ if __name__ == '__main__':
         '/__/     \__\ | _| `._____|_______/    |_______||__| \__| \n'
 
     )
-    print("Arsen 1.0\nType the username that you want to search >>> ")
+    print("Arsen 1.0\n")
 
     import Arsen
     Arsen.main()
