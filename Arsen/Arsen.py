@@ -1,6 +1,13 @@
+import time
+
 import requests
 import json
 import sites
+from colorama import Fore, Style
+
+import warnings
+warnings.filterwarnings("ignore")
+
 
 class Arsen:
     def __init__(self):
@@ -8,6 +15,10 @@ class Arsen:
 
     def CheckUser(self,username):
         json_path = "Resources/sites.json"
+
+        count = 0
+
+        startTime = time.time()
 
         with open(json_path, 'r', encoding='utf-8') as json_dosyasi:
             data = json.load(json_dosyasi)
@@ -22,13 +33,20 @@ class Arsen:
 
                 if(response.status_code == 200):
                     if (info.get("error") not in response.text):
-                        print(f"[{site}] {full_url}")
+                        print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}{site}{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}{Fore.WHITE}{full_url}{Style.RESET_ALL}")
+                        count+=1
 
+        endTime = time.time()
+
+        print(f"\nFound {count} profiles.")
+        print(f"Operation took {round(endTime-startTime)} seconds.")
+
+        # X doesnt working
 
 def main():
     main = Arsen()
 
-    print("Type the username that you want to search >>> ")
-    username = input()
+    username = input("Type the username that you want to search >>> ")
+    print()
 
     main.CheckUser(username)

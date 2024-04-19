@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 if __name__ == '__main__':
     print(
         '     ___      .______          _______. _______ .__   __. \n' +
@@ -8,7 +11,7 @@ if __name__ == '__main__':
         '/__/     \__\ | _| `._____|_______/    |_______||__| \__| \n'
 
     )
-    print("Arsen 1.0\n")
+    print("Arsen 1.0")
 
     import Arsen
     Arsen.main()

@@ -10,5 +10,21 @@
   "reddit": {
     "url": "https://www.reddit.com/r/",
     "error": "Community not found"
+  },
+  "tiktok": {
+    "url": "https://www.tiktok.com/@",
+    "error": "Couldn't find this account"
+  },
+  "telegram": {
+    "url": "https://t.me/",
+    "error": "FAQ"
+  },
+  "snapchat": {
+    "url": "https://www.snapchat.com/add/",
+    "error": "This content was not found"
+  },
+  "X": {
+    "url": "https://twitter.com/",
+    "error": "this page doesn’t exist"
   }
 }
