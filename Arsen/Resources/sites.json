@@ -1,0 +1,14 @@
+{
+  "instagram": {
+    "url": "https://www.instagram.com/",
+    "error": "Page not found"
+  },
+  "github": {
+    "url": "https://github.com",
+    "error": "Page not found"
+  },
+  "reddit": {
+    "url": "https://www.reddit.com/r/",
+    "error": "Community not found"
+  }
+}
