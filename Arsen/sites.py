@@ -2,6 +2,7 @@
 # simple
 class sites:
     def CreateString(username,url):
-        return url+username
+        u = username.strip()
+        return url+u
 
 

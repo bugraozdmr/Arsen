@@ -1,12 +1,24 @@
 import time
-
+import Main
 import requests
 import json
 import sites
 from colorama import Fore, Style
 
+import argparse
+
 import warnings
 warnings.filterwarnings("ignore")
+
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description=f'{Main.module_description}')
+    parser.add_argument('-t', '--timeout', type=int, help='Operation ends after n seconds. ** arsen.py -t 30 => this operation ends after 30 seconds ')
+    parser.add_argument('-u', '--username', type=str, help='After this parameter type username that you want to search')
+
+
+    return parser.parse_args()
 
 
 class Arsen:
@@ -14,16 +26,28 @@ class Arsen:
         pass
 
     def CheckUser(self,username):
+        print(f'\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL} Checking username : {Style.BRIGHT}{Fore.CYAN}{Fore.YELLOW}{username}{Fore.YELLOW}{Fore.RESET} {Style.NORMAL}')
+
+
+        # args
+        args = parse_arguments()
+
         json_path = "Resources/sites.json"
 
         count = 0
 
-        startTime = time.time()
+        opTime = 0
 
         with open(json_path, 'r', encoding='utf-8') as json_dosyasi:
             data = json.load(json_dosyasi)
 
+            site_count = len(list(data.items()))
+
+            opTime = 0
+
             for site,info in data.items():
+                opStart = time.time()
+
                 s = sites.sites
                 url = info.get("url")
 
@@ -36,18 +60,28 @@ class Arsen:
                         print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}{site}{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}{Fore.WHITE}{full_url}{Style.RESET_ALL}")
                         count+=1
 
-        endTime = time.time()
-
-        print(f"\nFound {count} profiles.")
-        print(f"Operation took {round(endTime-startTime)} seconds.")
+                opEnd = time.time()
 
 
-        # X doesnt working
+                opTime += opEnd-opStart
 
-def main():
+                if(args.timeout is not None):
+                    if (opTime >= parse_arguments().timeout):
+                        break
+
+        print(f"\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Found {count}/{site_count} profiles")
+        print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Operation took {round(opTime)} seconds")
+
+
+
+
+
+if __name__ == "__main__":
     main = Arsen()
 
-    username = input("Type the username that you want to search >>> ")
-    print()
+    args = parse_arguments()
 
-    main.CheckUser(username)
+    if (args.username is not None):
+        main.CheckUser(args.username)
+    else:
+        Main.info()

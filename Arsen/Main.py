@@ -1,7 +1,15 @@
 import warnings
+
+
 warnings.filterwarnings("ignore")
 
-if __name__ == '__main__':
+module_description = "Arsen: Find profiles in popular websites"
+__version__ = "1.0.0"
+
+
+
+
+def info():
     print(
         '     ___      .______          _______. _______ .__   __. \n' +
         '    /   \     |   _  \        /       ||   ____||  \ |  | \n' +
@@ -11,8 +19,4 @@ if __name__ == '__main__':
         '/__/     \__\ | _| `._____|_______/    |_______||__| \__| \n'
 
     )
-    print("Arsen 1.0")
-
-    import Arsen
-    Arsen.main()
-
+    print(f"Arsen {__version__}\n{module_description}")
