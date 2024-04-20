@@ -1,5 +1,5 @@
 import warnings
-
+from colorama import Fore, Style
 
 warnings.filterwarnings("ignore")
 
@@ -20,3 +20,4 @@ def info():
 
     )
     print(f"Arsen {__version__}\n{module_description}")
+    print(f"{Fore.CYAN}{Fore.YELLOW}Warning : Removed websites has their own protection(scripts to avoid cyber threads){Fore.YELLOW}{Fore.RESET}")

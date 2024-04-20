@@ -53,10 +53,17 @@ class Arsen:
 
                 full_url = s.CreateString(username=username,url=url)
 
-                response = requests.get(full_url)
+                headers = {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                    "Accept-Language": "en-US"
+                }
 
+                response = requests.get(full_url,headers=headers)
+
+                # check
                 if(response.status_code == 200):
                     if (info.get("error") not in response.text):
+                        if(site == "tiktok") : print(response.text)
                         print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}{site}{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}{Fore.WHITE}{full_url}{Style.RESET_ALL}")
                         count+=1
 

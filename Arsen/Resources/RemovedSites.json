@@ -1,0 +1,13 @@
+{
+  "X": {
+    "url": "https://twitter.com/",
+    "error": "this page doesn’t exist"
+  },
+  "Twitch": {
+    "url": "https://www.twitch.tv/",
+    "error": "that content is unavailable"
+  },"instagram": {
+    "url": "https://www.instagram.com/",
+    "error": "Page not found"
+  }
+}
