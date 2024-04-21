@@ -100,6 +100,8 @@ class Arsen:
 
         print(f"\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Found {count}/{site_count} profiles")
         print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Operation took {round(opTime)} seconds")
+        if(flag == 1):
+            print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}File saved in results/{args.output}")
 
 
         if(flag == 1):

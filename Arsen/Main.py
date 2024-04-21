@@ -4,7 +4,7 @@ from colorama import Fore, Style
 warnings.filterwarnings("ignore")
 
 module_description = "Arsen: Find profiles in popular websites"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 
