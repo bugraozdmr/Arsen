@@ -4,7 +4,7 @@ import requests
 import json
 import sites
 from colorama import Fore, Style
-
+import Result
 import argparse
 
 import warnings
@@ -16,6 +16,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description=f'{Main.module_description}')
     parser.add_argument('-t', '--timeout', type=int, help='Operation ends after n seconds. ** arsen.py -t 30 => this operation ends after 30 seconds ')
     parser.add_argument('-u', '--username', type=str, help='After this parameter type username that you want to search')
+    parser.add_argument('-o', '--output', type=str, help='After this parameter type filename only .Output will be in the same folder. ** arsen.py -o out.txt')
 
 
     return parser.parse_args()
@@ -26,11 +27,19 @@ class Arsen:
         pass
 
     def CheckUser(self,username):
-        print(f'\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL} Checking username : {Style.BRIGHT}{Fore.CYAN}{Fore.YELLOW}{username}{Fore.YELLOW}{Fore.RESET} {Style.NORMAL}')
-
+        # flag value for output
+        flag = 0
 
         # args
         args = parse_arguments()
+
+        if (args.output is not None):
+            if (".txt" not in args.output):
+                print("Filename must have .txt in it")
+                return
+
+            text = ""
+            flag = 1
 
         json_path = "Resources/sites.json"
 
@@ -38,12 +47,19 @@ class Arsen:
 
         opTime = 0
 
+        print(
+            f'\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL} Checking username : {Style.BRIGHT}{Fore.CYAN}{Fore.YELLOW}{username}{Fore.YELLOW}{Fore.RESET} {Style.NORMAL}')
+
         with open(json_path, 'r', encoding='utf-8') as json_dosyasi:
             data = json.load(json_dosyasi)
 
             site_count = len(list(data.items()))
 
             opTime = 0
+
+            # output start
+            if(flag == 1):
+                text += f"Searching for : {username}\n\n"
 
             for site,info in data.items():
                 opStart = time.time()
@@ -67,19 +83,31 @@ class Arsen:
                         print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}{site}{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}{Fore.WHITE}{full_url}{Style.RESET_ALL}")
                         count+=1
 
+                        if(flag == 1):
+                            text += f"{site} : {full_url}\n"
+
+
+
                 opEnd = time.time()
 
 
                 opTime += opEnd-opStart
 
                 if(args.timeout is not None):
-                    if (opTime >= parse_arguments().timeout):
+                    if (opTime >= args.timeout):
                         break
+
 
         print(f"\n{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Found {count}/{site_count} profiles")
         print(f"{Style.BRIGHT}{Fore.CYAN}[{Fore.GREEN}*{Fore.CYAN}]{Fore.RESET} {Style.NORMAL}Operation took {round(opTime)} seconds")
 
 
+        if(flag == 1):
+            text += f"\nFound {count}/{site_count} in {round(opTime)} seconds"
+
+        if (args.output is not None):
+            r = Result.Result
+            r.WriteOut(text=text, filename=args.output)
 
 
 
