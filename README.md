@@ -32,12 +32,19 @@ optional arguments:
                         Operation ends after n seconds. ** arsen.py -t 30 => this operation ends after 30 seconds
   -u USERNAME, --username USERNAME
                         After this parameter type username that you want to search
+  -o OUTPUT, --output OUTPUT
+                        After this parameter type filename only .Output will be in the same folder. ** arsen.py -u grant -o out.txt
+
 ```
 
 To search for user:
 ```
 python Arsen.py -u grant
 ```
+Advanced search for user:
+```
+python Arsen.py -u grant -o grant.txt -t 20
+```
 
 
-Thank you for using Arsen.
+Thank you for using Arsen 🎉🎉🎉

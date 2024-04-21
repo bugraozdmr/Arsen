@@ -16,7 +16,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description=f'{Main.module_description}')
     parser.add_argument('-t', '--timeout', type=int, help='Operation ends after n seconds. ** arsen.py -t 30 => this operation ends after 30 seconds ')
     parser.add_argument('-u', '--username', type=str, help='After this parameter type username that you want to search')
-    parser.add_argument('-o', '--output', type=str, help='After this parameter type filename only .Output will be in the same folder. ** arsen.py -o out.txt')
+    parser.add_argument('-o', '--output', type=str, help='After this parameter type filename only .Output will be in the same folder. ** arsen.py -u grant -o out.txt')
 
 
     return parser.parse_args()
